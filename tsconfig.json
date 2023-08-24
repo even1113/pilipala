@@ -1,0 +1,39 @@
+{
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    },
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.vitest.json"
+    }
+  ],
+  "compilerOptions": {
+    //编译器相关的选项
+    // "forceConsistentCasingInFileNames": true,  //是否强制代码中使用的模块文件名必须和文件系统中的文件名保持大小写一致
+    "target": "esnext", //指定编译的目标版本,esnext 指的是当前版本的 TS 编译器支持的最高版本。
+    "module": "esnext", //编译后的 JS 使用哪种模块系统。
+    "useDefineForClassFields": true,
+    "moduleResolution": "node",
+    "strict": true, //启用严格模式，能够更能保证类型检测的正确。能减少 bug，缺点是要多写一些类型推断和分支判断的代码。
+    "jsx": "preserve",
+    "sourceMap": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "typeRoots": ["./node_modules/@types", "./types"],
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"], //设置需要引入的全局类型声明。
+    "baseUrl": "./", //用于设置基础 url，可以帮我们省掉一些多余的路径前缀。如果你想使用相对项目根目录的路径，你需要将 baseUrl 设置为 .
+    "paths": {
+      //路径重映射。要使用 paths，首先要设置好 baseUrl，paths 的源路径和新路径会使用 baseUrl 作为相对路径计算。
+      "@": ["src"],
+      "@/*": ["src/*"]
+    },
+    "types": ["vite/client", "element-plus/global"] //可指定只使用哪些全局类型声明，而不是 node_modules/@types 下所有的类型声明。
+  },
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue"],
+  "exclude": ["node_modules", "dist"]
+}
